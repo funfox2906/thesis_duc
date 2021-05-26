@@ -1,0 +1,20 @@
+rule "All"
+when
+    Item Sonoff5CH received command
+then
+    if (receivedCommand == ON) {
+
+         
+        sendCommand(Sonoff1CH, ON)  
+        sendCommand(Sonoff2CH, ON)  
+		sendCommand(Sonoff3CH, ON)  
+		sendCommand(Sonoff4CH, ON) 
+    } else if (receivedCommand == OFF) {
+    
+		sendCommand(Sonoff1CH, OFF)  
+        sendCommand(Sonoff2CH, OFF)  
+		sendCommand(Sonoff3CH, OFF)  
+		sendCommand(Sonoff4CH, OFF) 		
+
+    }   
+end

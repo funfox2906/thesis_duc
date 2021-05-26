@@ -1,0 +1,42 @@
+//Knx.things
+//Change Tunnel or Router cần Restart !!
+Bridge knx:ip:bridge [
+   /*   
+   type="TUNNEL",                  //Sử dụng LM làm trung gian 
+    ipAddress="192.168.1.174",      //Test OK với LM ở 2 mode TP-UART (yes KNX), EIBnet/IP Routing (no KNX)
+    portNumber=3671, 
+    localIp="192.168.1.12",
+    readingPause=50, 
+    responseTimeout=10, 
+    readRetriesLimit=3, 
+    autoReconnectPeriod=60,
+    localSourceAddr="1.1.119"
+	*/
+	type="ROUTER",                    //Không cần LM, Rpi là Multicast điều khiển OK !!! (Test 16/09/2019)
+    ipAddress="224.0.23.12",          //Hệ thống không cần KNX, chỉ sử dụng IP KNX !!! 
+    portNumber=3671,                  //Kích hoạt cần Reboot lại.
+    localIp="192.168.1.12",
+    readingPause=50, 
+    responseTimeout=10, 
+    readRetriesLimit=3, 
+    autoReconnectPeriod=60,
+    localSourceAddr="1.1.119"
+
+] {
+    Thing device generic /*[
+        address="1.2.3",
+        fetch=true,
+        pingInterval=300,
+        readInterval=3600
+    ]*/ {
+
+        Type switch        : demoSwitch1        "Light"      [ ga="0/1/1+<0/1/1" ]
+		Type switch        : demoSwitch2        "Light"      [ ga="0/1/2+<0/1/2" ]
+        Type rollershutter : demoRollershutter "Shade"       [ upDown="4/3/50+4/3/51", stopMove="4/3/52+4/3/53", position="4/3/54+<4/3/55" ]
+        Type contact       : demoContact       "Door"        [ ga="1.019:<5/1/2" ]
+        Type number        : demoTemperature   "Temperature" [ ga="9.001:<5/0/0" ]
+        Type dimmer        : demoDimmer        "Dimmer"      [ switch="5/0/0+<5/0/1", position="5/0/2+<5/0/3", increaseDecrease="5/0/4" ]
+        Type string        : demoString        "Message"     [ ga="5/3/1" ]
+        Type datetime      : demoDatetime      "Alarm"       [ ga="5/5/42" ]
+    }
+}

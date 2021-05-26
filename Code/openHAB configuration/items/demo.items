@@ -1,0 +1,26 @@
+Group SW1 "SwitchSonOff" <energy>
+
+/*MQTT*/
+
+Number Humidity "Humidity [%.2f %%]" <humidity> (SW1) ["CurrentTemperature"] {mqtt="<[broker:stat/MQTTSonoff/Humidity:state:default]"}
+Number MotionDetector "MotionDetector [%d]" (SW1) {mqtt="<[broker:stat/MQTTSonoff/MotionDetector:state:default]"}
+String RGBColor "RGBColor [%s]" (SW1) {mqtt=">[broker:cmnd/MQTTSonoff/RGBColor:command:*:default],<[broker:stat/MQTTSonoff/RGBColor:state:default]"} 
+Switch ESP_Light  "Den Test" <light> (SW1) { mqtt=">[broker:cmnd/MQTTSonoff/ESP_LIGHT:command:*:default],<[broker:stat/MQTTSonoff/ESP_LIGHT:state:default]" }
+
+
+Switch LgTvPower                        "Power TV"                 (SW1)     {lgtv="ON:lgtv123:POWER"}
+Switch LgTvMute                         "Mute"                          (SW1)     {lgtv="ON:lgtv123:KEY_MUTE, OFF:lgtv123:KEY_MUTE"}
+
+/*Google Home*/
+Switch Sonoff5CH "All" (SW1) ["Switchable"]
+Switch Button_Light	"Light" <light> (SW1) ["Lighting"] { mqtt=">[broker:cmnd/MQTTSonoff/POWER2:command:*:default],<[broker:stat/MQTTSonoff/POWER2:state:default]" }
+Switch Button_TV  "TV" <light> (SW1) ["Switchable"] { mqtt=">[broker:cmnd/MQTTSonoff/POWER1:command:*:default],<[broker:stat/MQTTSonoff/POWER1:state:default]" }
+Switch ESP_Light "ESP_Light" <light> (SW1) ["Switchable"] { mqtt=">[broker:cmnd/MQTTSonoff/ESP_Light:command:*:default],<[broker:stat/MQTTSonoff/ESP_Light:state:default]" }
+
+
+
+
+Switch Sonoff1CH "Quat" <light> (SW1) { mqtt=">[broker:cmnd/MQTTSonoff/POWER1:command:*:default],<[broker:stat/MQTTSonoff/POWER1:state:default]" }
+Switch Sonoff2CH "Den Hoc" <light> (SW1) { mqtt=">[broker:cmnd/MQTTSonoff/POWER2:command:*:default],<[broker:stat/MQTTSonoff/POWER2:state:default]" }
+Switch Sonoff3CH  "Den 3" (SW1) { mqtt=">[broker:cmnd/MQTTSonoff/POWER3:command:*:default],<[broker:stat/MQTTSonoff/POWER3:state:default]" }
+Switch Sonoff4CH  "Den 4" <TV> (SW1) { mqtt=">[broker:cmnd/MQTTSonoff/POWER4:command:*:default],<[broker:stat/MQTTSonoff/POWER4:state:default]" }

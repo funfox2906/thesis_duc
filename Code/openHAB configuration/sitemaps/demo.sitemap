@@ -1,0 +1,10 @@
+sitemap demo label="Main Menu"
+{
+	Frame {
+		
+		Group item=SW1 	label="SwitchSonOff" icon="energy"
+		
+		
+	}
+	
+}
